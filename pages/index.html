@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todays Predictions</title>
+  </head>
+  <style type="text/css">
+    body {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 2fr));
+      grid-gap: 2rem 1rem;
+    }
+
+    body .sign {
+      justify-content: center;
+      align-items: center;
+      padding: 0.5rem;
+      box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+        0 3px 1px -2px rgba(0, 0, 0, 0.12), 0 1px 5px 0 rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: transform 0.3s ease-in-out;
+    }
+    .sign:hover {
+      transform: scaleY(1.1);
+    }
+
+    .sign .title {
+      font-size: 1.5rem;
+      color: cadetblue;
+      font-style: italic;
+      font-weight: 800;
+    }
+    .sign .content {
+      font-size: 0.8rem;
+      text-align: justify;
+      color: dimgray;
+    }
+  </style>
+  <body>
+    <script>
+      fetch("/today")
+        .then((res) => res.json())
+        .then((data) => {
+          Object.keys(data).forEach((signName) => {
+            const signContainer = document.createElement("div");
+            signContainer.className = "sign";
+            const signTitle = document.createElement("div");
+            signTitle.innerText = signName;
+            signTitle.className = "title";
+            const signContent = document.createElement("div");
+            signContent.innerText = data[signName]
+              .replace("\n\n", "")
+              .replace("அதிர்ஷ்ட", "\nஅதிர்ஷ்ட");
+            signContent.className = "content";
+            signContainer.append(...[signTitle, signContent]);
+            document.body.append(signContainer);
+          });
+        })
+        .catch(console.error);
+    </script>
+  </body>
+</html>

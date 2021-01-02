@@ -1,0 +1,19 @@
+{
+  "name": "tamil-astro-microservice",
+  "version": "1.0.0",
+  "description": "webservice which serves horoscope predictions for current day",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "start:dev": "nodemon"
+  },
+  "author": "Rajesh Sundaram",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "tamil-astro": "file:tamil-astro-package/tamil-astro-1.0.0.tgz"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.6"
+  }
+}
