@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "prepare:package": "sh build-package.sh ",
+    "postinstall": "npm run prepare:package && npm i ./tamil-astro-package/tamil-astro.tgz --no-save",
     "start:dev": "nodemon"
   },
   "author": "Rajesh Sundaram",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1",
-    "tamil-astro": "file:tamil-astro-package/tamil-astro-1.0.0.tgz"
+    "express": "^4.17.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.6"
